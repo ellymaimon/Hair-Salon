@@ -102,6 +102,7 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
         }
+        
         public static Stylist Find(int id)
         {
             MySqlConnection conn = DB.Connection();
@@ -136,5 +137,44 @@ namespace HairSalon.Models
             }
             return foundStylist;
         }
+
+        public void Update()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE stylists SET name = @Name, experience = @Experience, specialty = @Specialty, phone = @Phone WHERE id = @StylistId;";
+            cmd.Parameters.AddWithValue("@Name", this.Name);
+            cmd.Parameters.AddWithValue("@Experience", this.Experience);
+            cmd.Parameters.AddWithValue("@Specialty", this.Specialty);
+            cmd.Parameters.AddWithValue("@Phone", this.Phone);
+            cmd.Parameters.AddWithValue("@StylistId", this.Id);
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void Delete()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM stylists WHERE id = @StylistId;";
+            cmd.Parameters.AddWithValue("@StylistId", this.Id);
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = @"DELETE FROM clients WHERE stylist_id = @StylistId;";
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }        
     }
 }
