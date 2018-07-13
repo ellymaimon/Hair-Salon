@@ -2,9 +2,18 @@
   Layout = "_Layout";
 }
 
-  <div class='container'>
+<div class='container'>
     <h1>Stylists</h1>
-    
 
+    @foreach (var stylist in @Model)
+    {
+        <div class="stylist">
+            <h2>@stylist.Name</h2>
+        </div>
+    }
+
+    <div class='button-div'>
+        <a class='btn btn-Success' href="/stylists/new">Add New Stylist</a>
+    </div>  
     
-  </div>
+</div>
