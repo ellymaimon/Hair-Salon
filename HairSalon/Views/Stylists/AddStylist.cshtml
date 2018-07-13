@@ -1,43 +1,76 @@
-<!-- @{
+@{
   Layout = "_Layout";
 }
 
 <div class='container'>
     <h1>Add a New Stylist</h1>
 
-    <form>
+    <form action="/stylists/create" method="post">
     <div class="form-group">
         <label for="name">Stylist's Name</label>
-        <input type="text" class="form-control" id="name" placeholder="">
+        <input type="text" class="form-control" name="name" id="name" required>
     </div>
     <div class="form-group">
-        <label for="exampleFormControlSelect1">Example select</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <label for="experience">Stylist's Experience</label>
+        <select class="form-control" name="experience" id="experience">
+        <option value="0 to 1">0 to 1 years</option>
+        <option value="1 to 3">1 to 3 years</option>
+        <option value="3 to 6">3 to 6 years</option>
+        <option value="6 to 10">6 to 10 years</option>
+        <option value="10+">10+ years</option>
         </select>
     </div>
-    <div class="form-group">
-        <label for="exampleFormControlSelect2">Example multiple select</label>
-        <select multiple class="form-control" id="exampleFormControlSelect2">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        </select>
+    <fieldset class="form-group">
+    <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Stylist's Specialty</legend>
+        <div class="col-sm-10">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="specialty" id="allAround" value="All-Around" checked>
+                <label class="form-check-label" for="allAround">
+                All-Around
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="specialty" id="formal" value="Formal Hairstyling">
+                <label class="form-check-label" for="formal">
+                Formal Hairstyling
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="specialty" id="highlighting" value="Highlighting">
+                <label class="form-check-label" for="highlighting">
+                Highlighting
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="specialty" id="barbering" value="Barbering">
+                <label class="form-check-label" for="barbering">
+                Barbering
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="specialty" id="coloring" value="Coloring (Balayage, Ombre)">
+                <label class="form-check-label" for="coloring">
+                Coloring (Balayage, Ombre)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="specialty" id="conditioning" value="Deep Conditioning and Repair">
+                <label class="form-check-label" for="conditioning">
+                Deep Conditioning and Repair
+                </label>
+            </div>     
+        </div>
     </div>
+    </fieldset>
     <div class="form-group">
-        <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <label for="phone">Stylist's Phone Number</label>
+        <input class="form-control" type="tel" id="phone" name="phone"
+        placeholder="123-456-7890"
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        required />
     </div>
+    <button type="submit" class="btn btn-success">Submit</button>
     </form>
-
-    <div class='button-div'>
-        <a class='btn btn-Success' href="/stylists/new">Add New Stylist</a>
-    </div>  
     
-</div> -->
+</div>
