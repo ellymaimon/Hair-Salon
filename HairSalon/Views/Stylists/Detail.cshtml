@@ -10,7 +10,13 @@
         <p class="card-text">Experience: @Model.Experience</p>
         <p class="card-text">Specialty: @Model.Specialty</p>
         <p class="card-text">Phone Number: @Model.Phone</p>
+        <p>Clients:</p>
+        @foreach (var client in Model.GetClients())
+        {
+            <p><a href='/clients/@client.Id'>@client.Name</a></p>
+        }
         <a href="/stylist/{id}/update" class="card-link">Update Stylist Details</a>
+        <a href="/clients/new" class="card-link">Add Client to Stylist</a>
         <a href="/stylist/{id}/delete" class="card-link">Delete Stylist</a>
         <a href="/stylists" class="card-link">Back to All Stylists</a>
 
