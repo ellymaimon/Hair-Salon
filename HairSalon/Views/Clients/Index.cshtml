@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class='container'>
+    <h1>Clients</h1>
+
+    @foreach (var client in @Model)
+    {
+        <div class="client">
+            <a href="clients/@client.Id/detail"<h2>@client.Name</h2>
+        </div>
+    }
+    
+</div>
