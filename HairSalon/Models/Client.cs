@@ -5,26 +5,25 @@ using HairSalon;
 
 namespace HairSalon.Models
 {
-    public class Stylist
+    public class Client
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Experience { get; set; }
-        public string Specialty { get; set; }
-        public string Phone { get; set; }
+        public string Gender { get; set; }
         public string ImageName { get; set; }
+        public int StylistId { get; set; }
     }
 
-    public override bool Equals(System.Object otherStylist)
+    public override bool Equals(System.Object otherClient)
     {
-        if (!(otherStylist is Stylist))
+        if (!(otherClient is Client))
         {
             return false;
         }
         else
         {
-            Stylist newStylist = (Stylist)otherStylist;
-            bool nameEquality = (this.Name == newStylist.Name);
+            Client newClient = (Client)otherClient;
+            bool nameEquality = (this.Name == newClient.Name);
             return (nameEquality);
         }
     }
