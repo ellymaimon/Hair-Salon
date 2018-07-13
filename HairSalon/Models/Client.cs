@@ -29,7 +29,8 @@ namespace HairSalon.Models
                 Client newClient = (Client)otherClient;
                 bool nameEquality = (this.Name == newClient.Name);
                 bool genderEquality = (this.Gender == newClient.Gender);
-                return (nameEquality && genderEquality);
+                bool stylistIdEquality = (this.StylistId == newClient.StylistId);
+                return (nameEquality && genderEquality && stylistIdEquality);
             }
         }
 
@@ -72,6 +73,59 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
-        }           
+        }
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO clients (name, gender, stylist_id) VALUES (@Name, @Gender, @StylistId);";
+            cmd.Parameters.AddWithValue("@Name", this.Name);
+            cmd.Parameters.AddWithValue("@StylistId", this.StylistId);
+            cmd.Parameters.AddWithValue("@Gender", this.Gender);
+
+            cmd.ExecuteNonQuery();
+            this.Id = (int) cmd.LastInsertedId;
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+        
+        public static Client Find(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM clients WHERE id = @searchId;";
+            cmd.Parameters.AddWithValue("@searchId", id);
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            int clientId = 0;
+            string name = "";
+            string gender = "";
+            int stylistId = 0;
+
+            while (rdr.Read())
+            {
+                 clientId = rdr.GetInt32(0);
+                 name = rdr.GetString(1);
+                 gender = rdr.GetString(2);
+                 stylistId = rdr.GetInt32(3);
+            }
+
+            Client foundClient = new Client(name, gender, clientId, stylistId);
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return foundClient;
+        }
+
     }
 }
