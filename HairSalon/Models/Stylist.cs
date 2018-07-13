@@ -12,20 +12,31 @@ namespace HairSalon.Models
         public int Experience { get; set; }
         public string Specialty { get; set; }
         public string Phone { get; set; }
-        public string ImageName { get; set; }
-    }
 
-    public override bool Equals(System.Object otherStylist)
-    {
-        if (!(otherStylist is Stylist))
+        public Stylist (string name, int experience, string specialty, string phone, int id = 0)
         {
-            return false;
+            Name = name;
+            Experience = experience;
+            Specialty = specialty;
+            Phone = phone;
+            Id = id;
         }
-        else
+
+        public override bool Equals(System.Object otherStylist)
         {
-            Stylist newStylist = (Stylist)otherStylist;
-            bool nameEquality = (this.Name == newStylist.Name);
-            return (nameEquality);
+            if (!(otherStylist is Stylist))
+            {
+                return false;
+            }
+            else
+            {
+                Stylist newStylist = (Stylist)otherStylist;
+                bool nameEquality = (this.Name == newStylist.Name);
+                bool experienceEquality = (this.Experience == newStylist.Experience);
+                bool specialtyEquality = (this.Specialty == newStylist.Specialty);
+                bool phoneEquality = (this.Phone == newStylist.Phone);
+                return (nameEquality && experienceEquality && specialtyEquality && phoneEquality);
+            }
         }
     }
 }
