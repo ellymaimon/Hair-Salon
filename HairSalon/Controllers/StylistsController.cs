@@ -27,8 +27,8 @@ namespace HairSalon.Controllers
         [HttpGet("/stylists/{id}/detail")]
         public ActionResult Detail(int id)
         {
-            // Stylist newStylist = Stylist.Find(id);
-            return View();
+            Stylist newStylist = Stylist.Find(id);
+            return View(newStylist);
         }
     }
 }
