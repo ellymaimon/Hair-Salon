@@ -9,11 +9,11 @@ namespace HairSalon.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Experience { get; set; }
+        public string Experience { get; set; }
         public string Specialty { get; set; }
         public string Phone { get; set; }
 
-        public Stylist(string name, int experience, string specialty, string phone, int id = 0)
+        public Stylist(string name, string experience, string specialty, string phone, int id = 0)
         {
             Name = name;
             Experience = experience;
@@ -51,7 +51,7 @@ namespace HairSalon.Models
             {
                 int id = rdr.GetInt32(0);
                 string name = rdr.GetString(1);
-                int experience = rdr.GetInt32(2);
+                string experience = rdr.GetString(2);
                 string specialty = rdr.GetString(3);
                 string phone = rdr.GetString(4);
                 Stylist newStylist = new Stylist(name, experience, specialty, phone, id);

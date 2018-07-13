@@ -16,7 +16,7 @@ namespace HairSalon.Tests
         [TestMethod]
         public void GetSetProperties_GetsSetsProperties_True()
         {
-            Stylist newStylist = new Stylist("Elly Maimon", 3, "Coloring", "513-213-0982");
+            Stylist newStylist = new Stylist("Elly Maimon", "3 to 6", "Coloring", "513-213-0982");
             newStylist.Name = "Carrie Zamboni";
             Assert.AreEqual("Carrie Zamboni", newStylist.Name);
         }
@@ -24,8 +24,8 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Equals_ReturnsTrueIfNamesAreTheSame_Stylist()
         {
-            Stylist firstStylist = new Stylist("Elly Maimon", 3, "Coloring", "513-213-0982");
-            Stylist secondStylist = new Stylist("Elly Maimon", 3, "Coloring", "513-213-0982");
+            Stylist firstStylist = new Stylist("Elly Maimon", "3 to 6", "Coloring", "513-213-0982");
+            Stylist secondStylist = new Stylist("Elly Maimon", "3 to 6", "Coloring", "513-213-0982");
             Assert.AreEqual(firstStylist, secondStylist);
         }
 
@@ -39,7 +39,7 @@ namespace HairSalon.Tests
         [TestMethod]
         public void Save_SavesToDatabase_StylistList()
         {
-            Stylist newStylist = new Stylist("Elly Maimon", 3, "Coloring", "513-213-0982");
+            Stylist newStylist = new Stylist("Elly Maimon", "3 to 6", "Coloring", "513-213-0982");
             newStylist.Save();
             List<Stylist> actualList = Stylist.GetAll();
             List<Stylist> expectedList = new List<Stylist> { newStylist };
