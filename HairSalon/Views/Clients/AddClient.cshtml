@@ -19,9 +19,9 @@
         </select>
     </div>
     <div class='form-group'>
-        <label for='stylist'><h4>Stylist</h4></label>
+        <label for='stylistId'><h4>Stylist</h4></label>
         <select name='stylistId' class='form-control' required>
-            @foreach (var stylist in Model)
+            @foreach (var stylist in @Model)
             {
                 <option name="stylistId" value="@stylist.Id">@stylist.Name</option>
             }

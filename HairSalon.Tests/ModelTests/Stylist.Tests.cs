@@ -8,7 +8,6 @@ namespace HairSalon.Tests
     [TestClass]
     public class StylistTest : IDisposable
     {
-
         public void Dispose() => Stylist.DeleteAll();
 
         public StylistTest() => DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=eliran_maimon_test;";
@@ -90,6 +89,22 @@ namespace HairSalon.Tests
             List<Stylist> actualList = Stylist.GetAll();
             List<Stylist> expectedList = new List<Stylist>{ newStylist };
             CollectionAssert.AreEqual(expectedList, actualList);
-        }        
+        }     
+
+        [TestMethod]
+        public void GetClients_GetsClientsFromDatabase_ClientList()
+        {
+            // Client.DeleteAll();
+
+            Stylist newStylist = new Stylist("Elly Maimon", "3 to 6", "Coloring", "513-213-0982", 1);
+            newStylist.Save();
+
+            Client newClient = new Client("Pete Carolina", "Male", 1, 1);
+            newClient.Save();
+
+            List<Client> expectedList = Client.GetAll();
+            List<Client> actualList = newStylist.GetClients();
+            CollectionAssert.AreEqual(actualList, expectedList);
+        }              
     }
 }

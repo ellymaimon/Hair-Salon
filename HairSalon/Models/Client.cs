@@ -16,6 +16,8 @@ namespace HairSalon.Models
         {
             Name = name;
             Gender = gender;
+            Id = id;
+            StylistId = stylistId;
         }
 
         public override bool Equals(System.Object otherClient)

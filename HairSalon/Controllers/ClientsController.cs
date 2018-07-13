@@ -14,8 +14,11 @@ namespace HairSalon.Controllers
         }
 
         [HttpGet("/clients/new")]
-        public ActionResult AddClient() => View();
-
+        public ActionResult AddClient()
+        {
+            List<Stylist> allStylists = Stylist.GetAll();
+            return View(allStylists);
+        }
         [HttpPost("/clients/create")]
         public ActionResult Create(string name, string gender, int stylistId)
         {
