@@ -30,5 +30,12 @@ namespace HairSalon.Controllers
             Stylist newStylist = Stylist.Find(id);
             return View(newStylist);
         }
+
+        // [HttpPost("/stylists/{id}/update")]
+        // public ActionResult Update(int id)
+        // {
+        //     Stylist newStylist = Stylist.Find(id);
+        //     return View(newStylist);
+        // }
     }
 }
