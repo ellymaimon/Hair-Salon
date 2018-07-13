@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class='container'>
+    <h1>Add a New Client</h1>
+
+    <form action="/clients/create" method="post">
+    <div class="form-group">
+        <label for="name">Client's Name</label>
+        <input type="text" class="form-control" name="name" id="name" required>
+    </div>
+    <div class="form-group">
+        <label for="gender">Client's Gender</label>
+        <select class="form-control" name="gender" id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Non-Binary">Non-Binary</option>
+        </select>
+    </div>
+    <div class='form-group'>
+        <label for='stylist'><h4>Stylist</h4></label>
+        <select name='stylistId' class='form-control' required>
+            @foreach (var stylist in Model)
+            {
+                <option name="stylistId" value="@stylist.Id">@stylist.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+    
+</div>
